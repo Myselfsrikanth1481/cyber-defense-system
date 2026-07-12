@@ -159,7 +159,7 @@ function InviteAdminPanel() {
 
   async function loadInvites() {
     try {
-      const res = await fetch("http://localhost:8000/admin-invite/pending", { headers: { Authorization: `Bearer ${token()}` } });
+      const res = await fetch("https://excusable-agile-mourner.ngrok-free.dev/admin-invite/pending", { headers: { Authorization: `Bearer ${token()}` } });
       if (res.ok) setInvites(await res.json());
     } catch (_) {}
   }
@@ -170,7 +170,7 @@ function InviteAdminPanel() {
     if (!name.trim() || !email.trim() || !phone.trim()) return setError("All fields are required");
     setLoading(true); setError(""); setSuccess(""); setNewCode(null);
     try {
-      const res = await fetch("http://localhost:8000/admin-invite/create", {
+      const res = await fetch("https://excusable-agile-mourner.ngrok-free.dev/admin-invite/create", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token()}` },
         body: JSON.stringify({ name, email, phone }),
@@ -187,7 +187,7 @@ function InviteAdminPanel() {
 
   async function handleApprove(id) {
     try {
-      const res = await fetch(`http://localhost:8000/admin-invite/approve/${id}`, { method: "POST", headers: { Authorization: `Bearer ${token()}` } });
+      const res = await fetch(`https://excusable-agile-mourner.ngrok-free.dev/admin-invite/approve/${id}`, { method: "POST", headers: { Authorization: `Bearer ${token()}` } });
       const data = await res.json();
       if (!res.ok) throw new Error(data.detail);
       setSuccess("✅ Approved! Registration email sent.");
@@ -198,7 +198,7 @@ function InviteAdminPanel() {
   async function handleDelete(id) {
     if (!window.confirm("Are you sure you want to delete this invite?")) return;
     try {
-      const res = await fetch(`http://localhost:8000/admin-invite/reject/${id}`, { method: "DELETE", headers: { Authorization: `Bearer ${token()}` } });
+      const res = await fetch(`https://excusable-agile-mourner.ngrok-free.dev/admin-invite/reject/${id}`, { method: "DELETE", headers: { Authorization: `Bearer ${token()}` } });
       if (!res.ok) throw new Error("Failed to delete invite");
       setSuccess("🗑️ Invite deleted successfully.");
       loadInvites();
@@ -296,7 +296,7 @@ export default function SuperAdminDashboard({ user, onLogout }) {
       setLoginLogs(Array.isArray(ll) ? ll : []);
       try {
         const token = localStorage.getItem("token");
-        const mapRes = await fetch("http://localhost:8000/admin/attack-map", { headers: { Authorization: `Bearer ${token}` } });
+        const mapRes = await fetch("https://excusable-agile-mourner.ngrok-free.dev/admin/attack-map", { headers: { Authorization: `Bearer ${token}` } });
         if (mapRes.ok) setAttackMap(await mapRes.json());
       } catch { setAttackMap([]); }
     } catch (e) { console.error(e); }
@@ -312,7 +312,7 @@ export default function SuperAdminDashboard({ user, onLogout }) {
   useEffect(() => {
     const fetchUnread = async () => {
       try {
-        const res = await fetch("http://localhost:8000/documents/unread-total", { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
+        const res = await fetch("https://excusable-agile-mourner.ngrok-free.dev/documents/unread-total", { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } });
         if (res.ok) { const d = await res.json(); setUnread(d.unread || 0); }
       } catch (_) {}
     };

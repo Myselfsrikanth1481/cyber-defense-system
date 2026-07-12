@@ -1,0 +1,5 @@
+﻿content = open('src/api.js', 'r', encoding='utf-8').read()
+content = content.replace('http://localhost:8000', 'https://excusable-agile-mourner.ngrok-free.dev')
+content = content.replace('http://127.0.0.1:8000', 'https://excusable-agile-mourner.ngrok-free.dev')
+open('src/api.js', 'w', encoding='utf-8').write(content)
+print('api.js updated!')
