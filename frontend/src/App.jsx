@@ -9,7 +9,7 @@ import Vault from "./pages/Vault";
 import Messaging from "./pages/Messaging";
 import BlockchainLedger from "./pages/BlockchainLedger";
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://cyber-defense-system-1422.onrender.com";
 function getToken() { return localStorage.getItem("token"); }
 
 async function callLogout() {

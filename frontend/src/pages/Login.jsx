@@ -49,7 +49,7 @@ export default function Login({ onSwitch, saveToken }) {
     try {
       const formData = new FormData();
       formData.append("file", faceFile);
-      const res = await fetch("http://localhost:8000/auth/verify-face", {
+      const res = await fetch("https://cyber-defense-system-1422.onrender.com/auth/verify-face", {
         method: "POST",
         headers: { Authorization: `Bearer ${tempToken}` },
         body: formData,

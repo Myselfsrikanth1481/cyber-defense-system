@@ -1,4 +1,4 @@
-const BASE_URL = "https://excusable-agile-mourner.ngrok-free.dev";
+const BASE_URL = "https://cyber-defense-system-1422.onrender.com";
 
 function getToken() { return localStorage.getItem("token"); }
 function authHeaders() {
