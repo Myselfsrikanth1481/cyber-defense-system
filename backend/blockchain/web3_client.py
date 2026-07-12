@@ -1,4 +1,9 @@
-from web3 import Web3
+try:
+    from web3 import Web3
+    WEB3_AVAILABLE = True
+except ImportError:
+    Web3 = None
+    WEB3_AVAILABLE = False
 import json, os
 from app.config import settings
 
